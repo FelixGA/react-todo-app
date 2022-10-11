@@ -1,8 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 
-export default function Form() {
+function Form(props) {
+
+  const [name, setName] = useState('');
+
+  function handleChange(e) {
+    setName(e.target.value);
+  }
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+    // callback-function addTask wird aufgerufen und neuer Task an App.js übergeben
+    props.addTask(name);
+    // löscht Eingabe
+    setName("");
+  }
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
         <h2 className="label-wrapper">
           <label htmlFor="new-todo-input" className="label__lg">
             What needs to be done?
@@ -14,6 +28,8 @@ export default function Form() {
           className="input input__lg"
           name="text"
           autoComplete="off"
+          value={name}
+          onChange={handleChange}
         />
         <button type="submit" className="btn btn__primary btn__lg">
           Add
@@ -21,3 +37,4 @@ export default function Form() {
       </form>
     );
 }
+export default Form;

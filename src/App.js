@@ -19,6 +19,7 @@ function App(props) {
 
   //  Array mit tasks wird an Todos übergeben
   const taskList = tasks
+    // Zugriff nur auf 
     .filter(FILTER_MAP[filter])
     .map((task) => (
     <Todo
